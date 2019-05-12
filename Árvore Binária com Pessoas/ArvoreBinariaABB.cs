@@ -32,7 +32,7 @@ namespace Árvore_Binária_com_Pessoas
             {
                 return novo;
             }
-            if (novo.MeuDado.CompareTo(raiz) < 0) //se a raiz for nula a esquerda, insere a esquerda
+            if (novo.MeuDado.CompareTo(raiz.MeuDado)<0) //se a raiz for nula a esquerda, insere a esquerda
                 raiz.Esquerda = InserirRecursivo(novo, raiz.Esquerda);
             else //se a raiz for nula a direita, insere a direita
                 raiz.Direita = InserirRecursivo(novo, raiz.Direita);
@@ -72,11 +72,11 @@ namespace Árvore_Binária_com_Pessoas
         {
             if (raiz != null)
             {
-                String aux = "";
-                aux = EmOrdem(raiz.Esquerda);
-                aux += raiz.ToString();
-                aux += EmOrdem(raiz.Direita);
-                return aux;
+                String aux = "   ";
+                aux = "   " + EmOrdem(raiz.Esquerda);
+                aux += "   " + raiz.ToString();
+                aux += "   " + EmOrdem(raiz.Direita);
+                return ("\n" + aux);
             }
             else return "";
         }
