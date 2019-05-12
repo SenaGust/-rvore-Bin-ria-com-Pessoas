@@ -19,7 +19,7 @@ namespace Árvore_Binária_com_Pessoas
         }
         #endregion
 
-        
+
         public void Inserir(IDado Idado)
         {
             Nodo novo = new Nodo(Idado); //recebe o novo dado
@@ -36,10 +36,9 @@ namespace Árvore_Binária_com_Pessoas
                 raiz.Esquerda = InserirRecursivo(novo, raiz.Esquerda);
             else //se a raiz for nula a direita, insere a direita
                 raiz.Direita = InserirRecursivo(novo, raiz.Direita);
-
             return raiz;
         }
-       
+
 
         #region Buscar
         public IDado Buscar(string chave)
@@ -64,15 +63,24 @@ namespace Árvore_Binária_com_Pessoas
         }
         #endregion
 
-        #region Imprimir
+       
         public override string ToString()
         {
             return EmOrdem(this.Raiz);
         }
-        private string EmOrdem(Nodo raiz)
+        private string EmOrdem(Nodo raiz) //método que vai imprimir a árvore bonitinha
         {
-            return null;
+            if (raiz != null)
+            {
+                String aux = "";
+                aux = EmOrdem(raiz.Esquerda);
+                aux += raiz.ToString();
+                aux += EmOrdem(raiz.Direita);
+                return aux;
+            }
+            else return "";
         }
-        #endregion
-    }
+
+
+    } 
 }

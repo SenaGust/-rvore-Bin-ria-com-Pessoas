@@ -37,6 +37,14 @@ namespace Árvore_Binária_com_Pessoas
             return (string.Compare(this.Nome, pessoa_aux.Nome));
         }
 
-      
+        //o comparte To não teria que ter algo como 
+        // if (this.Nome<pessoa_aux.Nome)
+        //      return -1;
+        //else if (this.Nome > pessoa_aux.Nome)
+        //  return 1;
+        //else
+        //  return 0;
+
+
     }
 }
