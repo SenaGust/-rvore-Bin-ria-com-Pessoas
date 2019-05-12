@@ -15,20 +15,32 @@ namespace Árvore_Binária_com_Pessoas
         #region Construtor
         public ArvoreBinariaABB()
         {
-
+            this.Raiz = null;
         }
         #endregion
 
-        #region Inserir
-        public void Inserir(IDado dado)
+        
+        public void Inserir(IDado Idado)
         {
+            Nodo novo = new Nodo(Idado); //recebe o novo dado
+
+            this.Raiz = InserirRecursivo(novo, this.Raiz);
 
         }
         private Nodo InserirRecursivo(Nodo novo, Nodo raiz)
         {
-            return null;
+            if (raiz == null)
+            {
+                return novo;
+            }
+            if (novo.CompareTo(raiz) < 0)
+                raiz.Esquerda = InserirRecursivo(novo, raiz.Esquerda);
+            else
+                raiz.Direita = InserirRecursivo(novo, raiz.Direita);
+
+            return raiz;
         }
-        #endregion
+       
 
         #region Buscar
         public IDado Buscar(string chave)

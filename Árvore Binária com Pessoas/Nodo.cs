@@ -25,12 +25,25 @@ namespace Árvore_Binária_com_Pessoas
         #region Métodos
         public int Grau()
         {
-            return 0;
+            if (Esquerda != null)
+                if (Direita != null)
+                    return 2; //possui os dois filhos
+                else
+                    return -1; //filho deve ser mandado para a esquerda
+            else if (Direita != null)
+                return 1; //filho deve ser mandado para a direita
+            else
+                return 0; //não possui filhos
         }
 
-        public Nodo Antecessor()
+        public Nodo Antecessor()  
         {
-            return null;
+            Nodo aux = Esquerda; 
+
+            while (aux.Direita != null)
+                aux = aux.Direita;
+
+            return aux; //retorna o último elemento da direita
         }
         #endregion
     }
