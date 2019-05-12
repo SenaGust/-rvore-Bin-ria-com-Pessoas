@@ -25,7 +25,7 @@ namespace Árvore_Binária_com_Pessoas
         }
         #endregion
 
-        #region Métodos Interface
+       
         public override string ToString()
         {
             return string.Format("Nome: {0} Sexo: {1} Idade: {2} Peso: {3}", this.Nome, this.Sexo, this.Idade, this.Peso);
@@ -37,6 +37,6 @@ namespace Árvore_Binária_com_Pessoas
             return (string.Compare(this.Nome, pessoa_aux.Nome));
         }
 
-        #endregion
+      
     }
 }

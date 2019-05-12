@@ -23,19 +23,18 @@ namespace Árvore_Binária_com_Pessoas
         public void Inserir(IDado Idado)
         {
             Nodo novo = new Nodo(Idado); //recebe o novo dado
-
             this.Raiz = InserirRecursivo(novo, this.Raiz);
 
         }
         private Nodo InserirRecursivo(Nodo novo, Nodo raiz)
         {
-            if (raiz == null)
+            if (raiz == null) //insere novo elemento quando a raiz é nula
             {
                 return novo;
             }
-            if (novo.CompareTo(raiz) < 0)
+            if (novo.MeuDado.CompareTo(raiz) < 0) //se a raiz for nula a esquerda, insere a esquerda
                 raiz.Esquerda = InserirRecursivo(novo, raiz.Esquerda);
-            else
+            else //se a raiz for nula a direita, insere a direita
                 raiz.Direita = InserirRecursivo(novo, raiz.Direita);
 
             return raiz;
