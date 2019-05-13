@@ -24,6 +24,14 @@ namespace Árvore_Binária_com_Pessoas
             arvore.Inserir(new Pessoa("Beatriz", 20, 'F', 60));
 
             Console.WriteLine(arvore.ToString());
+
+            Console.WriteLine("\n\n"+arvore.a());
+
+            Console.Write("Quem você quer buscar: ");
+            string nome = Console.ReadLine();
+
+            Console.WriteLine();
+
             Console.ReadKey();
         }
     }

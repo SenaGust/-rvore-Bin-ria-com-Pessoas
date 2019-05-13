@@ -25,10 +25,9 @@ namespace Árvore_Binária_com_Pessoas
         }
         #endregion
 
-       
         public override string ToString()
         {
-            return string.Format("Nome: {0} Sexo: {1} Idade: {2} Peso: {3}", this.Nome, this.Sexo, this.Idade, this.Peso);
+            return string.Format("Nome: {0} Sexo: {1} Idade: {2} Peso: {3}.\n", this.Nome, this.Sexo, this.Idade, this.Peso);
         }
 
         public int CompareTo(object obj)
@@ -37,14 +36,10 @@ namespace Árvore_Binária_com_Pessoas
             return (string.Compare(this.Nome, pessoa_aux.Nome));
         }
 
-        //o comparte To não teria que ter algo como 
-        // if (this.Nome<pessoa_aux.Nome)
-        //      return -1;
-        //else if (this.Nome > pessoa_aux.Nome)
-        //  return 1;
-        //else
-        //  return 0;
-
-
+        public override bool Equals(object obj)
+        {
+            Pessoa pessoa = (Pessoa)(obj);
+            return (pessoa.Nome.Equals(this.Nome)); //é a mesma coisa que pessoa.Nome == this.Nome
+        }
     }
 }
