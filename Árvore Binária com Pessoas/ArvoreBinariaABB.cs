@@ -19,7 +19,6 @@ namespace Árvore_Binária_com_Pessoas
         }
         #endregion
 
-
         public void Inserir(IDado Idado)
         {
             Nodo novo = new Nodo(Idado); //recebe o novo dado
@@ -40,76 +39,11 @@ namespace Árvore_Binária_com_Pessoas
             }
             return raiz;
         }
-
-
-        #region Buscar
-        public IDado Buscar(string nome)
-        {
-            Nodo busca = new Nodo(new Pessoa(nome,0,' ',0));
-            return BuscaRecursiva(busca, Raiz).MeuDado;
-        }
-        private Nodo BuscaRecursiva(Nodo busca, Nodo raiz)
-        {
-            if (raiz == null)
-                return null;
-
-            if (busca.MeuDado.CompareTo(raiz) == 0)
-                return Raiz;
-            else if (busca.MeuDado.CompareTo(raiz) < 0)
-                return BuscaRecursiva(busca, raiz.Esquerda);
-            else
-                return BuscaRecursiva(busca, raiz.Direita);
-        }
-        #endregion
-
-        #region Retirar
-        public IDado Retirar(string nome)
-        {
-            return null;
-        }
-        public Nodo RetiradaRec(Nodo quem, Nodo onde, out Nodo saida)
-        {
-            saida = null;
-            return null;
-        }
-        #endregion
-
-        #region Paster
-        public string a()
-        {
-            double mulheres = 0, homens = 0, total = 0; 
-            ContabilizaHomens(Raiz, ref mulheres, ref homens, ref total);
-            return ("Homens: " + homens + " \nMédia de idade das mulheres: " + (total/mulheres));
-        }
-
-        private int ContabilizaHomens(Nodo raiz, ref double mulheres, ref double homens, ref double totalIdade)
-        {
-            if (raiz != null)
-            {
-                Pessoa pessoa = (Pessoa)(raiz.MeuDado);
-                if (char.ToUpper(pessoa.Sexo) == 'M')
-                {
-                    homens++;
-                    return ContabilizaHomens(raiz.Direita,ref mulheres,ref homens,ref totalIdade) + ContabilizaHomens(raiz.Esquerda, ref mulheres, ref homens,ref totalIdade);
-                }
-                else
-                {
-                    mulheres++;
-                    totalIdade += pessoa.Idade;
-                    return ContabilizaHomens(raiz.Direita, ref mulheres, ref homens, ref totalIdade) + ContabilizaHomens(raiz.Esquerda, ref mulheres, ref homens, ref totalIdade);
-                }
-                    
-            }
-            else
-                return 0;
-        }
-        #endregion
-
         public override string ToString()
         {
             return EmOrdem(this.Raiz);
         }
-        private string EmOrdem(Nodo raiz) //método que vai imprimir a árvore bonitinha
+        private string EmOrdem(Nodo raiz)
         {
             if (raiz != null)
             {
@@ -121,7 +55,7 @@ namespace Árvore_Binária_com_Pessoas
             }
             else return "";
         }
-        private string imprimeArvore(Nodo raiz) //método que vai imprimir a árvore bonitinha
+        private string imprimeArvore(Nodo raiz)
         {
             if (raiz != null)
             {
@@ -134,5 +68,63 @@ namespace Árvore_Binária_com_Pessoas
             else return "";
         }
 
+        #region Letra A
+        public string LetraA()
+        {
+            double mulheres = 0, homens = 0, total = 0;
+            ContabilizaHomens(Raiz, ref mulheres, ref homens, ref total);
+            return ("Homens: " + homens + " \nMédia de idade das mulheres: " + (total / mulheres));
+        }
+
+        private int ContabilizaHomens(Nodo raiz, ref double mulheres, ref double homens, ref double totalIdade)
+        {
+            if (raiz != null)
+            {
+                Pessoa pessoa = (Pessoa)(raiz.MeuDado);
+                if (char.ToUpper(pessoa.Sexo) == 'M')
+                {
+                    homens++;
+                    return ContabilizaHomens(raiz.Direita, ref mulheres, ref homens, ref totalIdade) + ContabilizaHomens(raiz.Esquerda, ref mulheres, ref homens, ref totalIdade);
+                }
+                else
+                {
+                    mulheres++;
+                    totalIdade += pessoa.Idade;
+                    return ContabilizaHomens(raiz.Direita, ref mulheres, ref homens, ref totalIdade) + ContabilizaHomens(raiz.Esquerda, ref mulheres, ref homens, ref totalIdade);
+                }
+
+            }
+            else
+                return 0;
+        }
+        #endregion
+
+        #region Letra B
+        public string Buscar(string nome)
+        {
+            Nodo busca = new Nodo(new Pessoa(nome,0,' ',0));
+            Nodo Encontrado = BuscaRecursiva(busca, Raiz);
+
+            if (Encontrado != null)
+            {
+                Pessoa pessoa = (Pessoa)(Encontrado.MeuDado);
+                return string.Format("{0} encontrado com sucesso!\nNome: {0} Peso: {1} Idade: {2}.", pessoa.Nome, pessoa.Peso, pessoa.Idade);
+            }
+            else
+                return ("A pessoa " + nome + " não foi encontrada.");
+        }
+        private Nodo BuscaRecursiva(Nodo busca, Nodo raiz)
+        {
+            if (raiz == null)
+                return null;
+
+            if (busca.MeuDado.CompareTo(raiz.MeuDado) == 0)
+                return raiz;
+            else if (busca.MeuDado.CompareTo(raiz.MeuDado) < 0)
+                return BuscaRecursiva(busca, raiz.Esquerda);
+            else
+                return BuscaRecursiva(busca, raiz.Direita);
+        }
+        #endregion
     } 
 }
